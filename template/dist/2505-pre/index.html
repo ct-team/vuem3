@@ -1,0 +1,48 @@
+<!DOCTYPE html><html><head><meta charset=utf-8><meta name=keywords content=""><meta name=description content=""><title>CT</title><meta http-equiv=expires content=0><meta http-equiv=Pragma content=no-cache><meta http-equiv=Cache-control content=no-cache><meta content="telephone=no,email=no" name=format-detection><meta name=viewport content="initial-scale=1,maximum-scale=1,minimum-scale=1"><link rel="shortcut icon" href=//static.tcy365.com/uc/common/images/favicon.ico><meta name=AppPublic content="//static.tcy365.com:2505/test/t1/"><script>window.CTPrefConfig = {
+			version: '1.0.0',
+			env: 'pre'
+		};</script><link href=//static.tcy365.com:2505/test/t1/assets/css/chunk-vendors.8cd44eda.css rel=stylesheet><link href=//static.tcy365.com:2505/test/t1/assets/css/index.88546d65.css rel=stylesheet><script>// 暂时使用viewport代替px
+		!(function (e, t) {
+			var n = t.documentElement,
+				d = e.devicePixelRatio || 1;
+
+			function i() {
+				// 老版本
+				var e = n.clientWidth / 7.5;
+				// 调整宽窄屏比例适配
+				if (n.clientWidth > n.clientHeight) {
+					e = n.clientHeight / 7.5;
+				}
+				n.style.fontSize = e + 'px';
+
+				// 限制最大宽度
+				var w =
+					n.clientWidth > n.clientHeight ?
+					n.clientHeight :
+					n.clientWidth;
+				var CW = w < 320 ? 320 : w;
+				var e = CW / 7.5;
+				n.style.fontSize = e + 'px';
+			}
+			if (
+				((function e() {
+						t.body ?
+							(t.body.style.fontSize = '16px') :
+							t.addEventListener('DOMContentLoaded', e);
+					})(),
+					i(),
+					e.addEventListener('resize', i),
+					e.addEventListener('pageshow', function (e) {
+						e.persisted && i();
+					}),
+					d >= 2)
+			) {
+				var o = t.createElement('body'),
+					a = t.createElement('div');
+				(a.style.border = '.5px solid transparent'),
+				o.appendChild(a),
+					n.appendChild(o),
+					1 === a.offsetHeight && n.classList.add('hairlines'),
+					n.removeChild(o);
+			}
+		})(window, document);</script></head><body><div id=app></div><script src=//static.tcy365.com:2505/test/t1/assets/js/chunk-vendors.875cbe98.js></script><script src=//static.tcy365.com:2505/test/t1/assets/js/index.280b45b3.js></script><div data-hide-env=production><script src=https://static.tcy365.com/cdn/eruda/1.5.4/eruda.js></script><script>eruda.init();</script></div></body></html>

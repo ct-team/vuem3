@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<title>CT</title>
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Cache-control" content="no-cache" />
+	<meta content="telephone=no,email=no" name="format-detection" />
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1" />
+	<!-- Vant留海屏兼容 在 head 标签中添加 meta 标签，并设置 viewport-fit=cover 值 -->
+	<!-- <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover"
+        /> -->
+	<link rel="shortcut icon" href="//static.tcy365.com/uc/common/images/favicon.ico" />
+
+	<!-- 环境and版本: start -->
+	<% if(process.env.NODE_ENV !== "development") { %>
+	<meta name="AppPublic" content="<ctAppPublic>" />
+	<script>
+		window.CTPrefConfig = {
+			version: '<ctVersion>',
+			env: '<ctEnv>'
+		};
+	</script>
+	<% }else{ %>
+	<script>
+		window.CTPrefConfig = {
+			version: 'development',
+			env: 'development'
+		};
+	</script>
+	<% } %>
+	<!-- 环境and版本: end -->
+
+	<!-- 注入css: start-->
+	<% for (var css in htmlWebpackPlugin.files.css) { %>
+	<link href="<%=htmlWebpackPlugin.files.css[css] %>" rel="stylesheet" />
+	<% } %>
+	<!-- 注入css: end-->
+
+	<!-- 移动端兼容性 start -->
+	<script>
+		// 暂时使用viewport代替px
+		!(function (e, t) {
+			var n = t.documentElement,
+				d = e.devicePixelRatio || 1;
+
+			function i() {
+				// 老版本
+				var e = n.clientWidth / 7.5;
+				// 调整宽窄屏比例适配
+				if (n.clientWidth > n.clientHeight) {
+					e = n.clientHeight / 7.5;
+				}
+				n.style.fontSize = e + 'px';
+
+				// 限制最大宽度
+				var w =
+					n.clientWidth > n.clientHeight ?
+					n.clientHeight :
+					n.clientWidth;
+				var CW = w < 320 ? 320 : w;
+				var e = CW / 7.5;
+				n.style.fontSize = e + 'px';
+			}
+			if (
+				((function e() {
+						t.body ?
+							(t.body.style.fontSize = '16px') :
+							t.addEventListener('DOMContentLoaded', e);
+					})(),
+					i(),
+					e.addEventListener('resize', i),
+					e.addEventListener('pageshow', function (e) {
+						e.persisted && i();
+					}),
+					d >= 2)
+			) {
+				var o = t.createElement('body'),
+					a = t.createElement('div');
+				(a.style.border = '.5px solid transparent'),
+				o.appendChild(a),
+					n.appendChild(o),
+					1 === a.offsetHeight && n.classList.add('hairlines'),
+					n.removeChild(o);
+			}
+		})(window, document);
+	</script>
+	<!-- 移动端兼容性 end -->
+</head>
+
+<body>
+	<div id="app"></div>
+	<!-- built files will be auto injected: start -->
+	<% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+	<script type="text/javascript" src="<%=htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
+	<% } %>
+	<!-- built files will be auto injected: start -->
+
+	<!-- 控制台插件 start -->
+	<div data-hide-env="production">
+		<script src="https://static.tcy365.com/cdn/eruda/1.5.4/eruda.js"></script>
+		<script>
+			eruda.init();
+		</script>
+	</div>
+	<!-- 控制台插件 end -->
+
+	<!-- 错误脚本收集 start -->
+	<% if(BUCheckAppId) { %>
+	<script>
+		var PageConfig = {
+			jstracker: {
+				app: '<%=BUCheckAppId%>'
+			}
+		};
+	</script>
+	<script src="//static.tcy365.com/cdn/jstracker/3.0.1/jstracker.js?t=1" type="text/javascript" crossorigin></script>
+	<% } %>
+	<!-- 错误脚本收集 end-->
+</body>
+
+</html>
