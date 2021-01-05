@@ -9,7 +9,7 @@
         "analyz": "NODE_ENV=production npm_config_report=true npm run build"
     },
     "dependencies": {
-        "axios": "^0.19.1",
+        "axios": "^0.21.1",
         "babel-polyfill": "^6.26.0",
         "core-js": "^3.3.2",
         "fastclick": "^1.0.6",
